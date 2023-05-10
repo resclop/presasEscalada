@@ -1,7 +1,8 @@
+drop table calidad if exists;
 drop table presa if exists;
 drop table grado if exists;
 drop sequence if exists hibernate_sequence;
-create sequence hibernate_secuence start with 100 increment by 1;
+create sequence hibernate_sequence start with 100 increment by 1;
 
 create table grado (
 	id bigint not null,
@@ -26,8 +27,8 @@ create table calidad (
 	primary key (id)
 );
 
-alter table presas add constraint fk_presa_grado foreign key (grado_id) references grado on delete cascade on update cascade;
+alter table presa add constraint fk_presa_grado foreign key (grado_id) references grado on delete cascade on update cascade;
 alter table calidad add constraint fk_calidad_presa foreign key (presa_id) references presa on delete cascade on update cascade;
 
-CREATE INDEX presas_indice ON presa(nombre);
+CREATE INDEX presa_indice ON presa(nombre);
 CREATE INDEX grado_indice ON grado(nombre);

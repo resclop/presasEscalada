@@ -21,13 +21,13 @@ public class HoldService {
 		return holdRepository.findAll();
 	}
 	
-	public List<Presa> findAllByGrade(Long grado){
-		return holdRepository.findByGradeId(grado);
+	public List<Presa> findAllByGrado(Long grado){
+		return holdRepository.findByGradoId(grado);
 	}
 	
-	//No encuentra el findbygradeid
-	public List<Presa> findAllByGrade(Grado grade){
-		return holdRepository.findByGrade(grade);
+	//No encuentra el findbygradoid
+	public List<Presa> findAllByGrado(Grado grado){
+		return holdRepository.findByGrado(grado);
 	}
 	
 	public Presa findById(Long id){

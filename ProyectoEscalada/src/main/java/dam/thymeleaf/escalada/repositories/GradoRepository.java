@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import dam.thymeleaf.escalada.model.Grado;
 
-public interface GradeRepository extends JpaRepository<Grado, Long>{
+public interface GradoRepository extends JpaRepository<Grado, Long>{
 
-	@Query("select * from Grado where destacada = true")
+	@Query("select g from Grado g where g.destacada = true")
 	public List<Grado> findDestacadas();
 }

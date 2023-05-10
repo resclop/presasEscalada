@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import dam.thymeleaf.escalada.model.Presa;
 import dam.thymeleaf.escalada.repositories.HoldRepository;
-import dam.thymeleaf.escalada.service.GradeService;
+import dam.thymeleaf.escalada.service.GradoService;
 import dam.thymeleaf.escalada.service.HoldService;
 
 public class MainController {
 
 	@Autowired
-	private GradeService gradeService;
+	private GradoService gradoService;
 	
 	@Autowired
 	private HoldService holdService;
@@ -27,10 +27,10 @@ public class MainController {
 		if(idGrado==null) {
 			presas = holdService.obtenerPresasAleatorias(HoldRepository.PRODUCTOS_ALEATORIOS);
 		} else {
-			presas = holdService.findAllByGrade(idGrado);
+			presas = holdService.findAllByGrado(idGrado);
 		}
 		
-		model.addAttribute("grados", gradeService.findAll());
+		model.addAttribute("grados", gradoService.findAll());
 		model.addAttribute("presas", presas);
 		
 		return "index";

@@ -11,14 +11,14 @@ import dam.thymeleaf.escalada.model.Presa;
 public interface HoldRepository extends JpaRepository<Presa, Long> {
 
 	public final int PRODUCTOS_ALEATORIOS = 8;
-	public List<Presa> findByGrade(Grado grado);
+	public List<Presa> findByGrado(Grado grado);
 	
-	@Query("select presa.id from Presa")
+	@Query("select id from Presa")
 	public List<Long> obtenerIds();
 	
-	@Query("select * from Presa where grado.id=?1")
-	public List<Presa> findByGradeId(Long gradoid);
+	@Query("select p from Presa p where grado.id=?1")
+	public List<Presa> findByGradoId(Long gradoid);
 	
 	@Query()
-	public int findNumberHoldsByGrade(Grado grado);
+	public int findNumberHoldsByGrado(Grado grado);
 }

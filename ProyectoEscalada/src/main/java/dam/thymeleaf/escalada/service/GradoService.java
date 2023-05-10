@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dam.thymeleaf.escalada.model.Grado;
-import dam.thymeleaf.escalada.repositories.GradeRepository;
+import dam.thymeleaf.escalada.repositories.GradoRepository;
 
 @Service
-public class GradeService {
+public class GradoService {
 
 	@Autowired
-	private GradeRepository repositorio;
+	private GradoRepository repositorio;
 	
 	public List<Grado> findAll(){
 		return repositorio.findAll();

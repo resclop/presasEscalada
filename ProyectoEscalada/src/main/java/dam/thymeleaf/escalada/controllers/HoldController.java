@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import dam.thymeleaf.escalada.model.Presa;
-import dam.thymeleaf.escalada.service.GradeService;
+import dam.thymeleaf.escalada.service.GradoService;
 import dam.thymeleaf.escalada.service.HoldService;
 
 @Controller
@@ -18,7 +18,7 @@ public class HoldController {
 	private HoldService holdService;
 	
 	@Autowired
-	private GradeService gradeService;
+	private GradoService gradoService;
 	
 	@GetMapping("/")
 	public String index(Model model) {
@@ -29,11 +29,9 @@ public class HoldController {
 	@GetMapping("/nuevo")
 	public String nuevoProducto(Model model) {
 		model.addAttribute("presa", new Presa());
-		model.addAttribute("grados", this.gradeService.findAll());
-		return "admin/form-producto";
+		model.addAttribute("grados", this.gradoService.findAll());
+		return "admin/form-presa";
 	}
-	
-	
 	
 	
 }
