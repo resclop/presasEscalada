@@ -17,10 +17,7 @@ public class Presa {
 	
 	@ManyToOne
 	private Grado grado;
-	
-	@ManyToOne
-	private Calidad calidad;
-	
+
 	public Presa() {}
 	
 	public Presa(String nombre, float precio, String imagen) {

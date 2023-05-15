@@ -1,5 +1,7 @@
 package dam.thymeleaf.escalada.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,7 +17,7 @@ public class Calidad {
 	private String composicion;
 	
 	@OneToMany
-	private Presa presa;
+	private List<Presa> presa;
 	
 	public Calidad() {}
 	

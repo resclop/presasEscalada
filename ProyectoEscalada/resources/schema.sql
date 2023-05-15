@@ -1,6 +1,7 @@
-drop table calidad if exists;
+
+drop table calidad if exists;	
 drop table presa if exists;
-drop table grado if exists;
+drop table grado if exists; 
 drop sequence if exists hibernate_sequence;
 create sequence hibernate_sequence start with 100 increment by 1;
 
