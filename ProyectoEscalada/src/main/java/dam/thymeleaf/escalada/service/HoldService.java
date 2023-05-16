@@ -43,12 +43,31 @@ public class HoldService {
 		holdRepository.delete(result);
 		return result;
 	}
+	public int numeroPresaGrado(Grado grado) {
+		return holdRepository.findNumberHoldsByGrado(grado);
+	}
 	
 	public List<Presa> obtenerPresasAleatorias(int productosAleatorios){
 		List<Long> listaIds = holdRepository.obtenerIds();
 		Collections.shuffle(listaIds);
 		listaIds = listaIds.stream().limit(productosAleatorios).collect(Collectors.toList());
 		return holdRepository.findAllById(listaIds);
+	}
+	
+	public List<Presa> listAll(String palabraClave){
+		float precio = -1;
+		String nombrePresa="";
+		try {
 		
+			precio = Float.parseFloat(palabraClave.toString());
+		}catch(NumberFormatException e) {
+			nombrePresa = palabraClave.toString();
+		}
+		
+		if(precio>-1) {
+			return holdRepository.findAll(precio);
+		}else {
+			return holdRepository.findAll(nombrePresa);
+		}
 	}
 }

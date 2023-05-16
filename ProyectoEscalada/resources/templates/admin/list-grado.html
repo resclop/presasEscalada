@@ -40,7 +40,7 @@ body {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/">Openwebinars.net Shop</a>
+				<a class="navbar-brand" href="/">Hold Shop</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -78,9 +78,19 @@ body {
 					</thead>
 					<tbody>
 						<tr th:each="grado : ${grados}">
-							<td><img
-								th:src="${not (#strings.isEmpty(grado.imagen))} ? ${grado.imagen} : 'http://placehold.it/48x48'"
-								class="img-responsive icono-grado" alt="imagen" /></td>
+						
+						<td>
+						<div th:if="${grado.destacada}">
+ 							<img class="img-grado-destacada" th:src="@{/images/EstrellaDestacada.png}" />
+						</div>
+						<div th:unless="${grado.destacada}">
+ 							<img class="img-grado-destacada" th:src="@{/images/EstrellaNoDestacada.png}" />
+						</div></td>
+						
+	<!--  EJEMPLO <img th:src="@{'/images/madrid.jpg'}"  src="../static/images/madrid.jpg" alt="New York" width="1100" height="500"/>-->
+						
+						
+						
 							<td th:text="${grado.nombre}"></td>
 							<td class="operaciones"><a href="#"								
 								class="btn btn-primary">Editar</a> 

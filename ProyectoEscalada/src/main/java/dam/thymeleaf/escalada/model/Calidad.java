@@ -40,6 +40,4 @@ public class Calidad {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
 }

@@ -21,4 +21,16 @@ public interface HoldRepository extends JpaRepository<Presa, Long> {
 	
 	@Query()
 	public int findNumberHoldsByGrado(Grado grado);
+	
+	/**
+	 * Método encargado de buscar la presa a traves de su nombre o precio
+	 * @param palabraClave nombre que recibe el parametro de entrada ( 
+	 * @return
+	 */
+	@Query("select p from Presa p where p.nombre like %?1%")
+	public List<Presa> findAll(String nombrePresa);
+	
+	@Query("select p from Presa p where p.precio<=?1")
+	public List<Presa> findAll(float precio);
+	
 }
