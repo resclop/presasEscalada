@@ -288,3 +288,18 @@ body {
  .operaciones {
  	width: 20%;
  }
+ 
+ .img-grado-destacada{
+ 	width: 15%;
+ }
+ 
+ 
+ .calidad{
+ 	color: #b36800;
+ 	font-size: 3rem;
+ 	background-color: rgb(192, 191, 188);
+ 	display: inline-block;
+ }
+ 
+ 
+ 
