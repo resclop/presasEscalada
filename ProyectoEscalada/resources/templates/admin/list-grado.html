@@ -36,12 +36,25 @@ body {
 				<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
 					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
+					<span class="sr-only">Hold Shop</span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="/">Hold Shop</a>
 			</div>
+						<!-- BUSCADOR -->
+	<!--  Añadido ultimo para centrar --><ul class="nav navbar-nav navbar-center">
+			<form class="form-inline" th:action="@{/buscar}">
+				<div class="form-group mb-2">
+					<!--   <label>Buscador</label>-->
+				</div>
+				<div class="form-group mx-sm-3 mb-2">
+					<input type="text" name="palabraClave" class="form-control" id="palabraClave" th:value="${palabraClave}" placeholder="Inserta el nombre o precio" required/>
+				</div>
+				<input type="submit" class="btn btn-primary mb-2" value="Buscar"/>
+				<input type="submit" class="btn btn-secondary mb-2" value="Limpiar"/>
+			</form>
+<!-- Ultimo añadido -->	</ul>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -64,7 +77,7 @@ body {
 		<div class="row">
 			<div class="col-md-offset-2 col-md-8">				
 				<div class="pull-right">
-					<a href="form-grado.html" 
+					<a th:href="@{/admin/grado/nueva}" 
 						class="btn btn-primary">Nuevo grado</a>
 
 				</div>

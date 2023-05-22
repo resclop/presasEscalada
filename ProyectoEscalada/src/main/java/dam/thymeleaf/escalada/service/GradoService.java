@@ -7,7 +7,11 @@ import org.springframework.stereotype.Service;
 
 import dam.thymeleaf.escalada.model.Grado;
 import dam.thymeleaf.escalada.repositories.GradoRepository;
-
+/**
+ * Clase con finalidad service, es la que aporta un servicio a través de sus métodos 
+ * @author Raul
+ * @version 1.0
+ */
 @Service
 public class GradoService {
 

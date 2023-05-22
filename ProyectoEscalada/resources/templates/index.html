@@ -7,26 +7,19 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title></title>
 
-
 <!-- Bootstrap -->
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="../../static/css/style.css" th:href="@{/css/style.css}"
+<link href="../static/css/style.css" th:href="@{/css/style.css}"
 	rel="stylesheet" />
-
+<script src="../static/js/script.js" th:src="@{/js/script.js}" defer></script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-<style>
-body {
-	margin-top: 20px;
-}
-</style>
-
 </head>
 <body>
 
@@ -42,7 +35,8 @@ body {
 				</button>
 				<a class="navbar-brand" href="/">Hold Shop</a>
 			</div>
-						<!-- BUSCADOR -->
+			
+			<!-- BUSCADOR -->
 	<!--  Añadido ultimo para centrar --><ul class="nav navbar-nav navbar-center">
 			<form class="form-inline" th:action="@{/buscar}">
 				<div class="form-group mb-2">
@@ -52,90 +46,73 @@ body {
 					<input type="text" name="palabraClave" class="form-control" id="palabraClave" th:value="${palabraClave}" placeholder="Inserta el nombre o precio" required/>
 				</div>
 				<input type="submit" class="btn btn-primary mb-2" value="Buscar"/>
-				<input type="submit" class="btn btn-secondary mb-2" value="Limpiar"/>
+				<input id="limpiar"  class="btn btn-secondary mb-2" value="Limpiar"/>
 			</form>
 <!-- Ultimo añadido -->	</ul>
+			
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Opciones <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="/admin/grado/"
+							<li><a href="admin/list-grado.html"
 								th:href="@{/admin/grado/}">Gestión de grados</a></li>
-							<li><a href="/admin/presa/" th:href="@{/admin/presa/}">Gestión
-									de presas</a></li>
+							<li><a href="admin/list-presa.html"
+								th:href="@{/admin/presa/}">Gestión de presas</a></li>
 						</ul></li>
 				</ul>				
 			</div>
-
 		</div>
 	</nav>
 
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<div class="pull-right">
-					<a href="form-producto.html" 
-						th:href="@{/admin/presa/nuevo}"
-						class="btn btn-primary">Nueva presa</a>
+			<div class="col-sm-3 col-md-2 sidebar">
+				<h3>Grados</h3>
+				<ul class="nav nav-sidebar">
+					<li th:each="grado : ${grados}">
+					<a href="#"
+						th:href="@{/(idGrado=${grado.id})}"
+						th:text="${grado.nombre}">grado</a></li>
+				</ul>
+			</div>
 
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<h1>Sección de presas</h1>
+				<h3 th:if="${resultados>0}">Se han encontrado <span th:text="${resultados}"> </span> elementos </h3>
+				
+				<div class="row">
+					<div class="col-sm-3" th:each="presa : ${presas}">						
+						<a href="#" th:href="@{/presa/{id}(id=${presa.id})}">
+							<div class="col-item">
+								<div class="photo">
+									<img src="http://placehold.it/350x260"
+										th:src="${#strings.isEmpty(presa.imagen)} ? 'http://placehold.it/350x260' : ${presa.imagen}"
+										class="img-responsive" alt="a" />
+								</div>
+								<div class="info">
+									<div class="row">
+										<div class="price col-md-12">
+											<h5 th:text="${#strings.abbreviate(presa.nombre,65)}">Nombre</h5>
+											<div class="price-text-color">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
 				</div>
-
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Imagen</th>
-							<th>Nombre</th>
-							<th>Precio</th>
-							<th>Operaciones</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="presa : ${presas}">
-							<td><img
-								th:src="${not (#strings.isEmpty(presa.imagen))} 
-								              ? ${presa.imagen} : 'http://placehold.it/48x48'"
-								class="img-responsive icono-grado" alt="imagen" /></td>
-							<td th:text="${presa.nombre}"></td>
-							<td th:text="${#numbers.formatCurrency(presa.precio)}"></td>
-							<td class="operaciones"><a href="#"								
-								class="btn btn-primary">Editar</a>
-								<button type="button" class="btn btn-danger" data-toggle="modal"
-									data-target="#delete-modal">Borrar</button>
-							</td>
-						</tr>
-					</tbody>
-				</table>
 			</div>
 		</div>
 	</div>
 
-	<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title">Borrar presa</h4>
-				</div>
-				<div class="modal-body">
-					<p>¿Está usted seguro de borrar esta presa?</p>
-					<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-					<a href="#" class="btn btn-danger">Sí</a>
-				</div>
-			</div>
-
-		</div>
-	</div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 </body>
 </html>
