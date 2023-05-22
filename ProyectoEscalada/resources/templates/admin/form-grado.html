@@ -33,8 +33,21 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/">Openwebinars.net Shop</a>
+				<a class="navbar-brand" href="/">Hold Shop</a>
 			</div>
+						<!-- BUSCADOR -->
+	<!--  Añadido ultimo para centrar --><ul class="nav navbar-nav navbar-center">
+			<form class="form-inline" th:action="@{/buscar}">
+				<div class="form-group mb-2">
+					<!--   <label>Buscador</label>-->
+				</div>
+				<div class="form-group mx-sm-3 mb-2">
+					<input type="text" name="palabraClave" class="form-control" id="palabraClave" th:value="${palabraClave}" placeholder="Inserta el nombre o precio" required/>
+				</div>
+				<input type="submit" class="btn btn-primary mb-2" value="Buscar"/>
+				<input type="submit" class="btn btn-secondary mb-2" value="Limpiar"/>
+			</form>
+<!-- Ultimo añadido -->	</ul>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -43,7 +56,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="/admin/grado/"
 								th:href="@{/admin/grado/}">Gestión de grados</a></li>
-							<li><a href="/admin/presa/" th:href="@{/admin/producto/}">Gestión
+							<li><a href="/admin/presa/" th:href="@{/admin/presa/}">Gestión
 									de presas</a></li>
 						</ul></li>
 				</ul>				
@@ -55,13 +68,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-offset-2 col-md-8">
-				<form method="post" action="#"
-					th:action="@{/admin/grado/nueva/submit}"
-					th:object="${grado}">
-					<h1>
-						<span th:text="${grado.id} ? 'Editar' : 'Nueva'"></span>
-						grados
-					</h1>
+				<form method="post" action="#" th:action="@{/admin/grado/nuevo/submit}" th:object="${grado}">
+					<h1><span th:text="${grado.id} ? 'Editar' : 'Nuevo '"></span>grado</h1>
 					<input type="hidden" th:field="*{id}" id="id" />
 					<div class="form-group">
 						<label class="control-label" for="nombre">Nombre</label> <input type="text"
@@ -69,15 +77,8 @@
 							required="required" th:field="*{nombre}">
 					</div>
 					<div class="form-group">
-						<label class="control-label" for="imagen">URL de la imagen</label> <input type="url"
-							class="form-control" id="imagen" placeholder="http://..."
-							th:field="*{imagen}">
-					</div>
-					<div class="form-group">
 						<label class="control-label" for="destacada"> <input type="checkbox"
-							id="destacada" value="true" th:field="*{destacada}"> Es
-							destacada
-						</label>
+							id="destacada" value="true" th:field="*{destacada}"> Es	destacada</label>
 					</div>
 					<button type="submit" class="btn btn-default">Enviar</button>
 				</form>

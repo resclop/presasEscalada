@@ -33,8 +33,21 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/">Openwebinars.net Shop</a>
+				<a class="navbar-brand" href="/">Hold Shop</a>
 			</div>
+						<!-- BUSCADOR -->
+	<!--  Añadido ultimo para centrar --><ul class="nav navbar-nav navbar-center">
+			<form class="form-inline" th:action="@{/buscar}">
+				<div class="form-group mb-2">
+					<!--   <label>Buscador</label>-->
+				</div>
+				<div class="form-group mx-sm-3 mb-2">
+					<input type="text" name="palabraClave" class="form-control" id="palabraClave" th:value="${palabraClave}" placeholder="Inserta el nombre o precio" required/>
+				</div>
+				<input type="submit" class="btn btn-primary mb-2" value="Buscar"/>
+				<input type="submit" class="btn btn-secondary mb-2" value="Limpiar"/>
+			</form>
+<!-- Ultimo añadido -->	</ul>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -42,9 +55,8 @@
 						aria-expanded="false">Opciones <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="/admin/grado/"
-								th:href="@{/admin/grados/}">Gestión de grados</a></li>
-							<li><a href="/admin/presa/" th:href="@{/admin/presa/}">Gestión
-									de presas</a></li>
+								th:href="@{/admin/grado/}">Gestión de grados</a></li>
+							<li><a href="/admin/presa/" th:href="@{/admin/presa/}">Gestión de presas</a></li>
 						</ul></li>
 				</ul>
 			</div>
@@ -55,15 +67,10 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-offset-2 col-md-8">
-				<form method="post" action="#"
-					th:action="@{/admin/presas/nuevo/submit}" th:object="${presas}">
-					<h1>
-						<span th:text="${presas.id} ? 'Editar' : 'Nuevo'"></span>
-						presa
-					</h1>
+				<form method="post" action="#" th:action="@{/admin/presa/nuevo/submit}" th:object="${presa}">
+				<h1><span th:text="${presa.id} ? 'Editar' : 'Nueva '"></span>presa</h1>
 					<input type="hidden" th:field="*{id}" id="id" />
-					<div class="form-group"
-						th:classappend="${#fields.hasErrors('nombre')} ? 'has-error'">
+					<div class="form-group" th:classappend="${#fields.hasErrors('nombre')} ? 'has-error'">
 						<label class="control-label" for="nombre">Nombre</label> <input type="text"
 							class="form-control" id="nombre" placeholder="Nombre"
 							th:field="*{nombre}" /> <span
@@ -109,7 +116,5 @@
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
 </body>
 </html>

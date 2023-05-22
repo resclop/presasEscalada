@@ -9,6 +9,7 @@ import dam.thymeleaf.escalada.model.Grado;
 
 public interface GradoRepository extends JpaRepository<Grado, Long>{
 
+	//Query que sirve para marcar grados como destacados o no
 	@Query("select g from Grado g where g.destacada = true")
 	public List<Grado> findDestacadas();
 }

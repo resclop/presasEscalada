@@ -23,18 +23,13 @@ public class App
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);
 	}
-
-
+	
 	@Bean
 	public CommandLineRunner initData(HoldRepository holdRepository) {
-
 		return args -> {
-
 			// Rescatamos todos los productos
 			List<Presa> presas =holdRepository.findAll();
-
 			Random r = new Random();
-
 			// Para cada uno de ellos
 			for (Presa p : presas) {
 				// Vamos a añadirle un número aleatorio de puntuaciones, entre 1 y 10
@@ -43,8 +38,6 @@ public class App
 				}
 				// Actualizamos los productos, almacenando así su puntuación
 				holdRepository.saveAll(presas);
-
-
 			};
 		};
 	}
